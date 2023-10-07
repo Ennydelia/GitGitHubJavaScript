@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Proyecto Scope y Eventos</title>
+    </head>
+    <body>
+        <!-- Elemento con alcance global-->
+        <h1 id="titulo"> Scope y Eventos</h1>
+
+        <!--Boton con alcance local-->
+        <button id="cambiarColor"> Cambiar color</button>
+        <!-- Creacion de un formulario-->
+        <form id="miFormulario">
+
+            <label for = "nombre"> Nombre: </label>
+            <input type = "text" id="nombre"/>
+            <button type = "submit" >Mostrar Nombre</button>
+        </form>
+        <!-- Creacion de elemento parrafo-->
+        <p id = "mensaje"> </p>
+
+        <script>
+            //Controlador de eventos para el boton
+            document.getElementById("cambiarColor").addEventListener("click", function(){
+                //Cambiar el color del fondo de la pagina web
+                document.body.style.backgroundColor = "lightblue";
+                //Mostrar un mensaje de confirmacion
+                document.getElementById("mensaje").textContent = "El color se cambio"
+            });
+
+            //Controlador de eventos en linea para un formulario submit
+            document.getElementById("miFormulario").addEventListener("submit", function (event){
+                event.preventDefault(); //Evitar el comportamiento predeterminado del formulario como recarga de pagina
+
+                //Obtener el valor de campo de entrada
+                var nombre = document.getElementById("nombre").value;
+
+                //Mostrar el nombre en la pagina
+                document.getElementById("mensaje").textContent = "Hola, " + nombre;
+            });
+
+            //Evento de teclado (KeyDown)
+            document.addEventListener("keydown", function(event){
+                if(event.key === "Escape"){
+                    //Regresa el fondo de pantalla al color original cuando se presiona la tecla escape
+                    document.body.style.backgroundColor = "";
+                }
+            });
+        </script>
+    </body>
+</html>
